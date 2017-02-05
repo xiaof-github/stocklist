@@ -1,0 +1,2 @@
+# stocklist
+information of stock
