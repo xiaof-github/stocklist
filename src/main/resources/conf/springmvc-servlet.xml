@@ -11,13 +11,8 @@
 
     <!-- 启动扫描所有的controller -->
     <context:component-scan base-package="com.risk"/>
-    <!-- 完成请求和注解POJO的映射 -->
-    <bean
-            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-    </bean>
-    <bean
-            class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-    </bean>
+    <context:annotation-config />
+    <mvc:annotation-driven />
 
     <!-- web请求的拦截器
     <mvc:interceptors>
