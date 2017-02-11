@@ -25,18 +25,20 @@ import java.util.List;
 public class StockHttpClient {
     private Logger log = LogManager.getLogger(StockHttpClient.class);
 
-    public List<StockEntity> getStockList(){
+    public List<StockEntity> getStockList(String code){
         CloseableHttpClient httpclient = HttpClients.createDefault();
         String responseBody = "";
+        String reqCode = StockUtils.stockCode2req(code);
         try {
             URI uri = new URIBuilder()
                     .setScheme("http")
                     .setHost("qt.gtimg.cn")
                     .setPath("/")
-                    .setParameter("q", "sz000858")
+                    .setParameter("q", reqCode)
                     .build();
             HttpGet httpGet = new HttpGet(uri);
             System.out.println(httpGet.getURI());
+            log.info(httpGet.getURI());
             System.out.println("Executing request " + httpGet.getRequestLine());
             // Create a custom response handler
             ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
@@ -56,6 +58,7 @@ public class StockHttpClient {
             responseBody = httpclient.execute(httpGet, responseHandler);
             System.out.println("----------------------------------------");
             System.out.println(responseBody);
+            log.info(responseBody);
         } catch(Exception e){
             log.error(e.getMessage(), e);
         }
