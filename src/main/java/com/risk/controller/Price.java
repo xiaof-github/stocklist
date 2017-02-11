@@ -38,7 +38,7 @@ public class Price {
     }
 
     @RequestMapping(value = "/stock/list", method = RequestMethod.GET)
-    public void stockList(@RequestParam(value = "code", required = false) String code, HttpServletResponse response){
+    public void stockList(@RequestParam(value = "code", required = true) String code, HttpServletResponse response){
         logger.info("request param: " + code);
 
         HttpServletUtils.responseAccessData(response, stock.getStockInfo(code));
