@@ -28,7 +28,13 @@ public class StockHttpClient {
     public List<StockEntity> getStockList(String code){
         CloseableHttpClient httpclient = HttpClients.createDefault();
         String responseBody = "";
-        String reqCode = StockUtils.stockCode2req(code);
+        String reqCode;
+        if (code == null){
+            reqCode = "sz000024";
+        }else{
+            reqCode = StockUtils.stockCode2req(code);
+        }
+
         try {
             URI uri = new URIBuilder()
                     .setScheme("http")
