@@ -8,6 +8,7 @@ var listController = function ($scope, $http) {
         $http.get('api/list', {code: "000024"} ).success(function(stockList){
              $scope.stock = stockList;
              console.log(stocklist);
+             //jiexi stock
         })
 
     }
