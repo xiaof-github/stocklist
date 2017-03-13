@@ -14,6 +14,6 @@ import java.util.List;
 public class Stockimpl implements Stock {
     public List<StockEntity> getStockInfo(String code){
         StockHttpClient client = new StockHttpClient();
-        return client.getStockList();
+        return client.getStockList(code);
     }
 }

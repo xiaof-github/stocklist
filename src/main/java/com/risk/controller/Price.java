@@ -37,7 +37,7 @@ public class Price {
         HttpServletUtils.responseAccessData(response, test);
     }
 
-    @RequestMapping(value = "/stock/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/list", method = RequestMethod.GET)
     public void stockList(@RequestParam(value = "code", required = false) String code, HttpServletResponse response){
         logger.info("request param: " + code);
 
