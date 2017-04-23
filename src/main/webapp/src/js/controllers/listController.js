@@ -3,15 +3,4 @@
  */
 'use strict';
 
-var listController = function ($scope, $http) {
-    $scope.fetchStockList = function () {
-        $http.get('api/list', {code: "000024"} ).success(function(stockList){
-             $scope.stock = stockList;
-             console.log(stocklist);
-             //jiexi stock
-        })
 
-    }
-
-    $scope.fetchStockList();
-}
