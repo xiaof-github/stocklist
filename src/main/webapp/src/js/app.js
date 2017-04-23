@@ -3,15 +3,44 @@
  */
 'use strict';
 
-var AngularSpringApp = {};
+Vue.component('app', {
+    template: '#app-template',
+    data: function () {
+        return {
+            msg: 'Welcome to Vue.js World'
+        }
+    }
+});
 
-var App = angular.module('AngularSpringApp', []);
+Vue.component('clock', {
+    template: '#clock-template',
+    data: function () {
+        return { time: "00:00:00"}
+    },
+    mounted: function () {
+        this.startTime()
+    },
+    methods: {
+        startTime: function () {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = this.checkTime(m);
+            s = this.checkTime(s);
 
-App.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/api/list', {
-        templateUrl: '/src/stock/list.html',
-        controller: listController
-    })
+            this.time = h + ":" + m + ":" + s;
+            var t = setTimeout(this.startTime, 500);
+        },
+        checkTime: function(i) {
+            if (i < 10) {
+                i = "0" + i
+            };
+            return i;
+        }
+    }
+});
 
-    $routeProvider.otherwise({redirectTo: '/api/list'});
-}])
+new Vue({
+    el: '#app'
+})
