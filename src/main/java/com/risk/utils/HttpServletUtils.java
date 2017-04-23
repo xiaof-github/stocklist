@@ -37,6 +37,7 @@ public class HttpServletUtils {
 
         try {
             response.setContentType("text/html; charset=UTF-8");
+            responseCORS(response);
             PrintWriter out = response.getWriter();
             out.print(json);
             out.flush();
@@ -44,5 +45,11 @@ public class HttpServletUtils {
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
+    }
+
+    private static void responseCORS(HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers", "Origin, Accept, Accept-Language, Content-Language, Content-Type");
     }
 }
