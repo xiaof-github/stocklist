@@ -5,10 +5,11 @@
 <configuration>
     <!-- 命名空间 -->
     <typeAliases>
-        <!--<typeAlias alias="User" type="org.youdian.springmvc.model.User"/>-->
+        <!--<typeAlias alias="Stock" type="com.risk.dao.StockDao"/>-->
     </typeAliases>
 
     <!-- 映射map -->
     <mappers>
+        <!--<mapper class="Stock" resource="com/risk/mapping/stock.xml" />-->
     </mappers>
 </configuration>

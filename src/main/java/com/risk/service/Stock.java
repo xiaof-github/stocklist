@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface Stock {
     List<StockEntity> getStockInfo(String code);
+    int saveStock(StockEntity stockEntity);
 }

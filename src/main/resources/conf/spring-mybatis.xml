@@ -19,11 +19,6 @@
 
     <!-- 载入常用的配置 -->
     <context:property-placeholder location="classpath:conf/jdbc.properties,classpath:conf/druid.properties"/>
-    <!-- 注解扫描所有包 -->
-    <context:component-scan
-            base-package="com.risk.test.*"/>
-
-    <context:annotation-config/>
 
     <tx:annotation-driven/>
 
@@ -66,6 +61,12 @@
 
     </bean>
 
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0">
+            <ref bean="sqlSessionFactory" />
+        </constructor-arg>
+    </bean>
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
 
@@ -73,6 +74,7 @@
         <!--<property name="mapperLocations" value="classpath:com/risk/mapping/*.xml"></property>-->
 
         <property name="typeAliasesPackage" value="com.risk.model"/>
+        <property name="mapperLocations" value="classpath*:mybatis/*.xml"/>
 
     </bean>
 
@@ -82,6 +84,7 @@
         <property name="basePackage" value="com.risk.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
+
 
     <!-- 自定义切面配置start -->
     <!--<bean id="proxy"-->
@@ -101,11 +104,9 @@
 
 
     <!-- 事务配置 start -->
-    <!--<bean id="transactionManager"-->
-          <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource">-->
-        <!--</property>-->
-    <!--</bean>-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
     <!--<tx:advice id="txadvice" transaction-manager="transactionManager">-->
         <!--<tx:attributes>-->

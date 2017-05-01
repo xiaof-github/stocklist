@@ -1,14 +1,13 @@
 package com.risk.controller;
 
+import com.risk.entity.StockEntity;
 import com.risk.service.Stock;
 import com.risk.utils.HttpServletUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +41,18 @@ public class Price {
         logger.info("request param: " + code);
 
         HttpServletUtils.responseAccessData(response, stock.getStockInfo(code));
+
+    }
+
+    @RequestMapping(value = "/api/stock", method = RequestMethod.POST)
+    @ResponseBody
+    //public String saveStock(@RequestBody StockEntity body){
+    public String saveStock(@ModelAttribute StockEntity body){
+        logger.info("body: " + body.toString());
+        int code = 0;
+        stock.saveStock(body);
+
+        return "code:" + code;
 
     }
 }

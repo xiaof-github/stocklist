@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.risk.dao.StockDao">
+    <resultMap id="resultMap" type="com.risk.entity.StockEntity">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="day_begin_price" property="dayBeginPrice" jdbcType="FLOAT"/>
+        <result column="result" property="result"/>
+    </resultMap>
+
+    <select id="getStock" resultMap="resultMap">
+        select * from stock
+    </select>
+    <insert id="insert" >
+        insert into stock (code, day_begin_price, result) values (
+        #{code}, #{dayBeginPrice}, #{result}
+        )
+    </insert>
+
+
+</mapper>

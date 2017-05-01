@@ -45,5 +45,6 @@
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="1073741824"/>
     </bean>
+
     <mvc:default-servlet-handler/>
 </beans>
