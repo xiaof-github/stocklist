@@ -78,12 +78,12 @@
 
     </bean>
 
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
 
-        <!-- 使用mapper注解方式 自动扫描接口注解 -->
-        <property name="basePackage" value="com.risk.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-    </bean>
+        <!--&lt;!&ndash; 使用mapper注解方式 自动扫描接口注解 &ndash;&gt;-->
+        <!--<property name="basePackage" value="com.risk.dao"/>-->
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>-->
+    <!--</bean>-->
 
 
     <!-- 自定义切面配置start -->

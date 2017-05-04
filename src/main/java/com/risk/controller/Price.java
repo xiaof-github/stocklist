@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by xiaof on 2017/1/16.
@@ -41,7 +42,13 @@ public class Price {
         logger.info("request param: " + code);
 
         HttpServletUtils.responseAccessData(response, stock.getStockInfo(code));
+    }
 
+    @RequestMapping(value = "/api/brief", method = RequestMethod.GET)
+    public void stockBriefList(@RequestParam(value = "code", required = false) String code, HttpServletResponse response){
+        logger.info("request param: " + code);
+
+        HttpServletUtils.responseAccessData(response, stock.query());
     }
 
     @RequestMapping(value = "/api/stock", method = RequestMethod.POST)
