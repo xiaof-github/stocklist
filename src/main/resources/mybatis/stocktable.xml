@@ -1,0 +1,42 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.risk.dao.StockTableDao" >
+    <resultMap type="com.risk.entity.KavgEntity" id="baseResultMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+    </resultMap>
+    <sql id="all_collum">
+        id,name,code
+    </sql>
+
+    <insert id="insertKavg" useGeneratedKeys="true" keyProperty="id">
+        insert into kavg ( name,code)
+        values (#{name},#{code})
+    </insert>
+
+    <select id="queryById" parameterType="Long" resultMap="baseResultMap">
+        select <include refid="all_collum"/>
+        from kavg
+        where id = #{id}
+    </select>
+
+    <select id="existTable" parameterType="String" resultType="Integer">
+        select count(1)
+        from sys.systables
+        where LCASE(tablename)=#{tableName}
+    </select>
+    <update id="dropTable">
+        drop table ${tableName}
+    </update>
+
+    <update id="createNewTable" parameterType="String" statementType="STATEMENT">
+        create table ${_parameter} (
+        id bigint not null AUTO_INCREMENT,
+        name varchar(255),
+        codes varchar(32),
+        primary key (id))
+    </update>
+</mapper>
