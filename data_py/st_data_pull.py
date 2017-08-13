@@ -152,7 +152,9 @@ def get_rise_top_today_all():
             df = df.append(df_one)
     print
     print("股票总数：%d") %(i)
+    df = df.reset_index(drop=True)
     print(df)
+    return df
 
 get_rise_top_today_all()
 
