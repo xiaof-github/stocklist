@@ -22,8 +22,9 @@ public class DaoInit implements InitializingBean {
     }
 
     public void afterPropertiesSet() throws Exception {
-
-        stockTableDao.createNewTable(tableName);
-        System.out.println("Init method after properties are set : ");
+        if (stockTableDao.existTable(tableName) < 1){
+            stockTableDao.createNewTable(tableName);
+            System.out.println("Init method after properties are set : ");
+        }
     }
 }

@@ -1,21 +1,115 @@
-<!doctype html>
-<html lang="en" ng-app="AngularSpringApp">
+<!DOCTYPE html>
+<html class='no-js' lang='zh'>
+<!-- <![endif] -->
 <head>
-    <meta charset="utf-8"/>
-    <title>service</title>
-    <link rel="stylesheet" href="src/css/app.css"/>
-    <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css"/>
+    <meta charset='utf-8'>
+    <!-- Set the viewport width to device width for mobile -->
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'>
+    <title>Discover Meteor 中文版</title>
+    <!-- Included CSS Files -->
+    <link href='/stylesheets/screen.css' rel='stylesheet'>
+    <link href='/stylesheets/print.css' media='print' rel='stylesheet'>
+    <!-- %link{:href => "http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic", :rel => "stylesheet"} -->
+    <!-- %link{:href => "http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700", :rel => "stylesheet"} -->
+    <link href='/images/favicon.ico' rel='shortcut icon'>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src='//use.typekit.net/rcr2ohz.js'></script>
+    <script>
+        try{Typekit.load();}catch(e){}
+    </script>
+    <style>
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 2px 10px;
+        }
+
+        th {
+            cursor: pointer;
+            background-color: #FBBC05;
+        }
+
+    </style>
 </head>
 <body>
+<header>
+    <h1>
+        <a href='/'>
+            <strong>牛散</strong>
+        </a>
+    </h1>
+</header>
+<div class='main'>
+    <div class='row'>
+        <input type='hidden' value='{"11.5"=&gt;"0", "11"=&gt;"0", "13.5"=&gt;"0", "3"=&gt;"0", "8.5"=&gt;"0", "7"=&gt;"0", "3.5"=&gt;"0", "10.5"=&gt;"0", "4.5"=&gt;"0", "2.5"=&gt;"0", "5.5"=&gt;"0", "7.5"=&gt;"0", "8"=&gt;"0", "6"=&gt;"0", "b"=&gt;"0", "10"=&gt;"0", "6.5"=&gt;"0", "9.5"=&gt;"0", "2"=&gt;"0", "1"=&gt;"0", "12"=&gt;"0", "4"=&gt;"0", "5"=&gt;"0", "a"=&gt;"0", "13"=&gt;"0", "9"=&gt;"0", "14.5"=&gt;"0", "14"=&gt;"0"}'>
+        <section class='intro'>
+            <div class='note'>
+                <p>股票数据分析，资讯汇总</p>
+            </div>
+        </section>
+        <section class='chapters'>
+            <h2>内容</h2>
+            <ul>
+                <li>
+                    <a class='chapter-title' href='/chapters/introduction/'>今日涨跌停</a>
+                    <span class='chapter-percentage'>0</span>
+                    <span class='chapter-number'>0</span>
+                </li>
+            </ul>
+            <table>
+                <thead>
+                <tr>
+                    <th>开盘价</th>
+                    <th>收盘价</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>data1</td>
+                    <td>data2</td>
+                </tr>
+                <tr>
+                    <td>data1</td>
+                    <td>data2</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
 
-<!--<script src="src/css/app.css"></script>-->
-<!--<script src="src/bootstrap/css/bootstrap.min.css"></script>-->
-<!--<script src="src/js/lib/vuejs/vue.js"></script>-->
+        <script>
+            $(function(){
+                // GitHub
+                var gitHubToken = "";
+                var lang = "zh";
 
-<div id="app"></div>
+                $.get('https://api.github.com/repos/DiscoverMeteor/DiscoverMeteor_'+lang+'/contributors', function (data) {
+                    data.sort(function(obj1, obj2) {
+                        return obj2.contributions - obj1.contributions;
+                    });
+                    $.each(data, function (index, contributor) {
+                        if(contributor.login != 'SachaG' && contributor.login != 'tmeasday' && contributor.login != 'rgoomar')
+                            $('.contributors').append('<li><img src="'+contributor.avatar_url+'"/><a href="'+contributor.html_url+'">'+contributor.login+'</a> <span>('+contributor.contributions+')</span></li>')
+                    });
+                });
 
-<script src="src/js/build.js"></script>
-<!--<script src="src/js/controllers/listController.js"></script>-->
-
+                $.getJSON('http://localhost:8080/test1.json', function (data) {
+                    console.log(data)
+                });
+            });
+        </script>
+    </div>
+</div>
+<footer>
+    <div class='row'>
+        &copy; 2017 xiaof</a>
+    </div>
+</footer>
+<!-- %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"} -->
+<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js'></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/lang/zh.js'></script>
+<script src='/javascripts/script.js'></script>
+<input id='lang' type='hidden' value='zh'>
 </body>
 </html>

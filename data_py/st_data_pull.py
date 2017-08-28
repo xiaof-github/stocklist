@@ -156,7 +156,7 @@ def get_rise_top_today_all():
     print(df)
     return df
 
-get_rise_top_today_all()
+#get_rise_top_today_all()
 
 
 
