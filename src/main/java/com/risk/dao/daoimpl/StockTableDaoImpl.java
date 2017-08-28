@@ -29,7 +29,11 @@ public class StockTableDaoImpl implements StockTableDao {
     }
 
     public int existTable(String tableName){
-        return 0;
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        int ret = sqlSession.selectOne("com.risk.dao.StockTableDao.existTable", tableName);
+        sqlSession.commit();
+        sqlSession.close();
+        return ret;
     }
 
     public int insertKavg(KavgEntity entity){

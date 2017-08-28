@@ -46,7 +46,7 @@
         <property name="maxUploadSize" value="1073741824"/>
     </bean>
     <bean id="DaoInit" class="com.risk.utils.DaoInit">
-        <property name="tableName" value="testStock1"></property>
+        <property name="tableName" value="testStock2"></property>
     </bean>
 
     <mvc:default-servlet-handler/>
