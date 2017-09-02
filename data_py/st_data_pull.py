@@ -127,6 +127,9 @@ def get_stock_real_time(code):
     #print(hil_index)
     df['high_limit'] = high_limit
     df = df.loc[hil_index]
+    df['date'] = datetime.datetime.today().date()
+    date = df.pop('date')
+    df.insert(0,'date',date)
     #print(df)
     return df
 
@@ -140,13 +143,13 @@ def get_rise_top_today_all():
     for code in code_list:
         i += 1
         codeg.append(code)
-        if (i%30 == 0):
+        if (i%50 == 0):
             df_one = get_stock_real_time(codeg)
             if (df_one is not None):
                 df = df.append(df_one)
             codeg = []
 
-    if (i%30 != 0):
+    if (i%50 != 0):
         df_one = get_stock_real_time(codeg)
         if (df_one is not None):
             df = df.append(df_one)
