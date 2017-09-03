@@ -90,6 +90,7 @@ def get_stock_hist_data(code,start=None,end=None):
 def get_stock_today_all():
     df = ts.get_h_data('002161', autype=None)
     print(df.dtypes)
+    return df
 
 #获取所有股票列表
 def get_stock_code():
@@ -135,7 +136,7 @@ def get_stock_real_time(code):
 
 
 #get_stock_code()
-def get_rise_top_today_all():
+def get_high_limit_today_all():
     df = pd.DataFrame()
     code_list = get_stock_code()
     i = 0
@@ -159,7 +160,7 @@ def get_rise_top_today_all():
     print(df)
     return df
 
-#get_rise_top_today_all()
+#get_high_limit_today_all()
 
 
 
