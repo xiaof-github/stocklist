@@ -1,5 +1,6 @@
 package com.risk.service;
 
+import com.risk.entity.HighLimitEntity;
 import com.risk.entity.StockEntity;
 import org.springframework.stereotype.Component;
 
@@ -12,4 +13,5 @@ public interface Stock {
     List<StockEntity> getStockInfo(String code);
     int saveStock(StockEntity stockEntity);
     List<StockEntity> query();
+    List<HighLimitEntity> queryHighLimit();
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.risk.dao.HighLimitDao">
+    <resultMap type="com.risk.entity.HighLimitEntity" id="hResultMap" >
+        <id property="index" column="index"/>
+        <result property="date" jdbcType="DATE" column="date"  javaType="java.util.Date" />
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="preClose" column="pre_close"/>
+        <result property="price" column="price"/>
+        <result property="high" column="high"/>
+        <result property="low" column="low"/>
+        <result property="volume" column="volume"/>
+        <result property="amount" column="amount"/>
+        <result property="time" column="time"/>
+        <result property="high_limit" column="high_limit"/>
+    </resultMap>
+    <sql id="all_collum">
+        `index`,  date,code,name,pre_close,price,high,low,volume,amount,time,high_limit
+    </sql>
+
+    <select id="queryById" parameterType="Long" resultMap="hResultMap">
+        select <include refid="all_collum"/>
+        from high_limit
+        where `index` = #{index}
+    </select>
+
+    <select id="query" parameterType="java.util.HashMap" resultMap="hResultMap">
+        select <include refid="all_collum"/>
+        from high_limit
+        where 1=1
+        <if test="date != null">
+            AND date=#{date}
+        </if>
+    </select>
+
+
+</mapper>

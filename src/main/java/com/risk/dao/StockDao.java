@@ -9,7 +9,6 @@ import java.util.Map;
 /**
  * Created by xiaof on 2017/4/30.
  */
-@Repository
 public interface StockDao {
     int insert(StockEntity stockEntity);
     List<StockEntity> query(Map<String, String> params);
