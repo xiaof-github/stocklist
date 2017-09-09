@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,5 +62,12 @@ public class Price {
 
         return "code:" + code;
 
+    }
+
+    @RequestMapping(value = "/api/highlimit", method = RequestMethod.GET)
+    public void queryHighLimit(@RequestParam(value = "date", required = false) Date date, HttpServletResponse response){
+        logger.info("request highlimit: ");
+
+        HttpServletUtils.responseAccessData(response, stock.queryHighLimit());
     }
 }

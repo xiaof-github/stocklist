@@ -75,6 +75,7 @@
 
         <property name="typeAliasesPackage" value="com.risk.model"/>
         <property name="mapperLocations" value="classpath*:mybatis/*.xml"/>
+        <property name="configLocation" value="classpath:conf/mybatis-config.xml" />
 
     </bean>
 

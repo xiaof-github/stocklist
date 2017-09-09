@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="file" fileName="../logs/test.log" append="true">
+        <File name="File" fileName="../logs/test.log" append="true">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
         </File>
     </appenders>
@@ -13,9 +13,16 @@
         <logger name="com.risk.test" level="info" additivity="false">
             <appender-ref ref="Console"/>
         </logger>
+        <logger name="log4j.logger.java.sql.Statement" level="info" additivity="false">
+            <appender-ref ref="File"/>
+        </logger>
+        <Logger name="com.risk.dao" level="debug" additivity="false">
+            <AppenderRef ref="File"/>
+        </Logger>
+
         <root level="info">
             <appender-ref ref="Console"/>
-            <appender-ref ref="file"/>
+            <appender-ref ref="File"/>
         </root>
     </loggers>
 </configuration>
