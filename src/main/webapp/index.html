@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <!-- Set the viewport width to device width for mobile -->
     <meta content='width=device-width, initial-scale=1.0' name='viewport'>
-    <title>周期</title>
+    <title>搬运工</title>
     <!-- Included CSS Files -->
     <link href='/stylesheets/screen.css' rel='stylesheet'>
     <link href='/stylesheets/print.css' media='print' rel='stylesheet'>
@@ -37,7 +37,7 @@
 <header>
     <h1>
         <a href='/'>
-            <strong>轩辕</strong>
+            <strong>搬运工</strong>
         </a>
     </h1>
 </header>
@@ -58,23 +58,14 @@
                     <span class='chapter-number'>0</span>
                 </li>
             </ul>
-            <table>
+            <table class="table" id="high">
                 <thead>
                 <tr>
-                    <th>开盘价</th>
-                    <th>收盘价</th>
+                    <th data-field="open">开盘价</th>
+                    <th data-field="close">收盘价</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>data1</td>
-                    <td>data2</td>
-                </tr>
-                <tr>
-                    <td>data1</td>
-                    <td>data2</td>
-                </tr>
-                </tbody>
+                <tbody class="sel"></tbody>
             </table>
         </section>
 
@@ -83,6 +74,8 @@
                 // GitHub
                 var gitHubToken = "";
                 var lang = "zh";
+                var table = $("#high");
+                var fileds = new Array();
 
                 $.get('https://api.github.com/repos/DiscoverMeteor/DiscoverMeteor_'+lang+'/contributors', function (data) {
                     data.sort(function(obj1, obj2) {
@@ -94,8 +87,23 @@
                     });
                 });
 
-                $.getJSON('http://localhost:8080/test1.json', function (data) {
-                    console.log(data)
+                $.get('http://localhost:8080/api/highlimit', function (data) {
+                    console.log(data);
+                    $('#high').children('tbody').empty();
+                    var tbody = '';
+                    var result = JSON.parse(data);
+                    var list = result.data;
+                    $.each(list, function(index, el) {
+                        var tr = "<tr>";
+                        tr += "<td>" + el.preClose;
+                        tr += "<td>" + el.price;
+                        tr += "</tr>";
+                        tbody += tr;
+                    });
+                    $('#high').children('tbody').append(tbody);
+                    //table.children('tbody').empty();
+                    //table.children('tbody').append(tbody);
+                    //table.children('tbody').addClass('sel');
                 });
             });
         </script>
