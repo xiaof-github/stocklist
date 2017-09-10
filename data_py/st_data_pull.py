@@ -107,8 +107,9 @@ def get_stock_real_time(code):
         return
     np.set_printoptions(threshold='nan')
     pd.set_option('display.width', 1000)
-    df = df[['code', 'name', 'pre_close','price', 'high', 'low', 'volume', 'amount', 'time']]
+    df = df[['code', 'name', 'pre_close', 'open','price', 'high', 'low', 'volume', 'amount', 'time']]
     df['pre_close'] = df['pre_close'].astype('float64')
+    df['open'] = df['open'].astype('float64')
     df['price'] = df['price'].astype('float64')
     df['high'] = df['high'].astype('float64')
     df['low'] = df['low'].astype('float64')
@@ -120,7 +121,8 @@ def get_stock_real_time(code):
     high_limit = pd.Series(df['pre_close']).copy()
     hil_index = []
     #print(index)
-    for i in range(0, len(index) - 1, 1):
+    #print(df)
+    for i in range(0, len(index), 1):
         high_limit[index[i]] = float(Decimal(str(df['pre_close'][index[i]] * 1.10)).quantize(Decimal('1.00'), rounding=ROUND_HALF_UP))
         if high_limit[index[i]] == df['price'][index[i]]:
             print("%s 涨停") % (df['name'][index[i]])
@@ -161,7 +163,8 @@ def get_high_limit_today_all():
     return df
 
 #get_high_limit_today_all()
-
+df = get_stock_real_time("300698")
+print(df)
 
 
 #today = today()

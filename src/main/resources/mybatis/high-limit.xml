@@ -9,6 +9,7 @@
         <result property="code" column="code"/>
         <result property="name" column="name"/>
         <result property="preClose" column="pre_close"/>
+        <result property="open" column="open"/>
         <result property="price" column="price"/>
         <result property="high" column="high"/>
         <result property="low" column="low"/>
@@ -18,7 +19,7 @@
         <result property="high_limit" column="high_limit"/>
     </resultMap>
     <sql id="all_collum">
-        `index`,  date,code,name,pre_close,price,high,low,volume,amount,time,high_limit
+        `index`,  date,code,name,pre_close,open,price,high,low,volume,amount,time,high_limit
     </sql>
 
     <select id="queryById" parameterType="Long" resultMap="hResultMap">
