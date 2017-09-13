@@ -7,4 +7,4 @@
            2.加入maven工程，编译后，用tomcat启动
 + 浏览器访问：http://localhost:8080
 
-![页面效果](http://wx1.sinaimg.cn/mw690/69375163gy1fjibvl311tj20ni0nsgnr.jpg)
+![涨停股票](http://wx1.sinaimg.cn/mw690/69375163gy1fjibvl311tj20ni0nsgnr.jpg "页面效果")
