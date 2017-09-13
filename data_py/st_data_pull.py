@@ -123,6 +123,8 @@ def get_stock_real_time(code):
     #print(index)
     #print(df)
     for i in range(0, len(index), 1):
+        if df['open'][index[i]] == 0:
+            continue
         high_limit[index[i]] = float(Decimal(str(df['pre_close'][index[i]] * 1.10)).quantize(Decimal('1.00'), rounding=ROUND_HALF_UP))
         if high_limit[index[i]] == df['price'][index[i]]:
             print("%s 涨停") % (df['name'][index[i]])
@@ -163,8 +165,8 @@ def get_high_limit_today_all():
     return df
 
 #get_high_limit_today_all()
-df = get_stock_real_time("300698")
-print(df)
+#df = get_stock_real_time("300698")
+# print(df)
 
 
 #today = today()
