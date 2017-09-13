@@ -11,6 +11,7 @@ public class HighLimitEntity {
     private String code;
     private String name;
     private Double preClose;
+    private Double open;
     private Double price;
     private Double high;
     private Double low;
@@ -113,5 +114,13 @@ public class HighLimitEntity {
 
     public void setHigh_limit(Double high_limit) {
         this.high_limit = high_limit;
+    }
+
+    public Double getOpen() {
+        return open;
+    }
+
+    public void setOpen(Double open) {
+        this.open = open;
     }
 }

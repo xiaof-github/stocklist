@@ -50,19 +50,25 @@
             </div>
         </section>
         <section class='chapters'>
-            <h2>内容</h2>
+            <h2>今日涨停</h2>
             <ul>
                 <li>
-                    <a class='chapter-title' href='/chapters/introduction/'>今日涨跌停</a>
-                    <span class='chapter-percentage'>0</span>
-                    <span class='chapter-number'>0</span>
+                    <a class='today-highlimit' >今日涨停股个数</a>
+                    <span style="font-size: 18px;color: red;" id="hCount"></span>
                 </li>
             </ul>
             <table class="table" id="high">
                 <thead>
                 <tr>
-                    <th data-field="open">开盘价</th>
-                    <th data-field="close">收盘价</th>
+                    <th data-field="open">代码</th>
+                    <th data-field="open">名称</th>
+                    <th data-field="open">日期</th>
+                    <th data-field="open">最新</th>
+                    <th data-field="open">上一日收盘价</th>
+                    <th data-field="close">开盘价</th>
+                    <th data-field="close">最高价</th>
+                    <th data-field="close">最低价</th>
+                    <th data-field="close">金额</th>
                 </tr>
                 </thead>
                 <tbody class="sel"></tbody>
@@ -77,15 +83,6 @@
                 var table = $("#high");
                 var fileds = new Array();
 
-                $.get('https://api.github.com/repos/DiscoverMeteor/DiscoverMeteor_'+lang+'/contributors', function (data) {
-                    data.sort(function(obj1, obj2) {
-                        return obj2.contributions - obj1.contributions;
-                    });
-                    $.each(data, function (index, contributor) {
-                        if(contributor.login != 'SachaG' && contributor.login != 'tmeasday' && contributor.login != 'rgoomar')
-                            $('.contributors').append('<li><img src="'+contributor.avatar_url+'"/><a href="'+contributor.html_url+'">'+contributor.login+'</a> <span>('+contributor.contributions+')</span></li>')
-                    });
-                });
 
                 $.get('http://localhost:8080/api/highlimit', function (data) {
                     console.log(data);
@@ -93,10 +90,30 @@
                     var tbody = '';
                     var result = JSON.parse(data);
                     var list = result.data;
+                    $("#hCount").html(list.length);
                     $.each(list, function(index, el) {
                         var tr = "<tr>";
-                        tr += "<td>" + el.preClose;
+                        tr += "<td>" + el.code;
+                        tr += "<td>" + el.name;
+                        console.log(el.date);
+                        var formate_datetime;
+                        var array = el.date.split(",");
+                        var array_b = array[1].split(" ");
+                        var array_a = array[0].split(" ");
+                        var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                        for (var i =0; i< month.length;i++){
+                            if(month[i].toLowerCase() == array_a[0].toLowerCase()){
+                                break;
+                            }
+                        }
+                        formate_datetime = array_b[1] + "-" + (i+1) + "-" + array_a[1];
+                        tr += "<td>" + formate_datetime;
                         tr += "<td>" + el.price;
+                        tr += "<td>" + el.preClose;
+                        tr += "<td>" + el.open;
+                        tr += "<td>" + el.high;
+                        tr += "<td>" + el.low;
+                        tr += "<td>" + el.amount + "元";
                         tr += "</tr>";
                         tbody += tr;
                     });
