@@ -2,5 +2,7 @@
 
 ## api
 
-1.根据股票代码查询详细信息
-http://localhost:8080/api/list?code=000024
+统计今日涨停股票
+http://localhost:8080
+
+![页面截图](http://wx1.sinaimg.cn/mw690/69375163gy1fjibvl311tj20ni0nsgnr.jpg)
